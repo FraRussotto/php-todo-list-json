@@ -29,11 +29,16 @@
     <ul class="list-group">
       <li
       v-for="(task, index) in list"
-      class="list-group-item d-flex justify-content-between align-items-center "
-      >{{ task.text }}
-      <button @click="deleteTask(index)" class="btn btn-warning">
-        <i class="fa-solid fa-trash"></i>
-      </button>
+      class="list-group-item d-flex justify-content-between align-items-center"
+      ><p :class="{'text-decoration-line-through' : task.isDone}">{{ task.text }}</p>
+      <div class="buttons">
+        <button @click="changeStatus(index)" class="btn me-3" :class="task.isDone ? 'btn-success' : 'btn-danger'">
+          <i class="fa-solid fa-check"></i>
+        </button>
+        <button @click="deleteTask(index)" class="btn btn-warning">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
       </li>
     </ul>
 

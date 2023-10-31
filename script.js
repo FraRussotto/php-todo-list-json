@@ -29,10 +29,16 @@ createApp({
       data.append('itemToDelete', index)
       axios.post('server.php', data)
         .then(res => {
-          console.log(res.data);
           this.list = res.data;
         })
-
+    },
+    changeStatus(index){
+      const data = new FormData();
+      data.append('itemToChange', index)
+      axios.post('server.php', data)
+        .then(res => {
+          this.list = res.data;
+        })
     }
   },
   mounted(){

@@ -20,6 +20,11 @@ if(isset($_POST['itemToDelete'])){
   file_put_contents('file.json', json_encode($list));
 }
 
+if(isset($_POST['itemToChange'])){
+  $list[$_POST['itemToChange']]['isDone'] = true;
+  file_put_contents('file.json', json_encode($list));
+}
+
 header('Content-Type: application/json');
 
 
