@@ -16,10 +16,8 @@ createApp({
     },
     addTask(){
       const data = new FormData();
-      data.append('task', {
-        text: this.newTask,
-        isDone: false
-      })
+      data.append('task', this.newTask);
+      data.append('isDone', false);
       axios.post('server.php', data)
         .then(res => {
           this.list = res.data;
