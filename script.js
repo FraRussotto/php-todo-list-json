@@ -1,0 +1,48 @@
+const { createApp } = Vue;
+
+createApp({
+  data(){
+    return {
+      list: [],
+      newTask: ''
+    }
+  },
+  methods:{
+    getListTasks(){
+      axios.get('server.php')
+      .then(res => {
+        this.list = res.data;
+      })
+    },
+    addTask(){
+      const data = new FormData();
+      data.append('task', {
+        text: this.newTask,
+        isDone: false
+      })
+      axios.post('server.php', data)
+        .then(res => {
+          this.list = res.data;
+          this.newTask = ''
+        })
+    },
+    deleteTask(index){
+      const data = new FormData();
+      data.append('itemToDelete', index)
+      axios.post('server.php', data)
+        .then(res => {
+          console.log(res.data);
+          this.list = res.data;
+        })
+
+    }
+  },
+  mounted(){
+    this.getListTasks();
+  }
+
+
+
+
+
+}).mount('#app');
