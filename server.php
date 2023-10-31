@@ -20,8 +20,9 @@ if(isset($_POST['itemToDelete'])){
   file_put_contents('file.json', json_encode($list));
 }
 
+
 if(isset($_POST['itemToChange'])){
-  $list[$_POST['itemToChange']]['isDone'] = true;
+  $list[$_POST['itemToChange']]['isDone'] = !$list[$_POST['itemToChange']]['isDone'];
   file_put_contents('file.json', json_encode($list));
 }
 
